@@ -179,7 +179,7 @@ h2 { font-size: 1.2rem; font-weight: 700; color: var(--accent); margin-bottom: 4
     <p style="color: var(--muted); font-size: 0.88rem; margin-top: 4px;">Enter the code shared by your facilitator</p>
     <div class="launch-input-wrap">
       <input type="text" id="code-input" placeholder="CODE" autocomplete="off" maxlength="10">
-      <button class="btn btn-primary btn-sm" id="code-go" style="width: auto; padding: 13px 20px;">→</button>
+      <button class="btn btn-primary btn-sm" id="code-go" style="width: auto; padding: 13px 20px;">></button>
     </div>
     <div class="launch-error" id="code-error"></div>
     <div class="import-section">
@@ -237,8 +237,8 @@ h2 { font-size: 1.2rem; font-weight: 700; color: var(--accent); margin-bottom: 4
   </div>
 
   <div class="btn-row">
-    <button class="btn btn-secondary" onclick="goHome()">← Back</button>
-    <button class="btn btn-primary" onclick="saveAndShowWaiting('map')">Save & Continue →</button>
+    <button class="btn btn-secondary" onclick="goHome()">< Back</button>
+    <button class="btn btn-primary" onclick="saveAndShowWaiting('map')">Save & Continue ></button>
   </div>
 </div>
 
@@ -264,8 +264,8 @@ h2 { font-size: 1.2rem; font-weight: 700; color: var(--accent); margin-bottom: 4
   </div>
 
   <div class="btn-row">
-    <button class="btn btn-secondary" onclick="goHome()">← Back</button>
-    <button class="btn btn-primary" onclick="saveAndShowWaiting('mind')">Save & Continue →</button>
+    <button class="btn btn-secondary" onclick="goHome()">< Back</button>
+    <button class="btn btn-primary" onclick="saveAndShowWaiting('mind')">Save & Continue ></button>
   </div>
 </div>
 
@@ -297,8 +297,8 @@ h2 { font-size: 1.2rem; font-weight: 700; color: var(--accent); margin-bottom: 4
   </div>
 
   <div class="btn-row">
-    <button class="btn btn-secondary" onclick="goHome()">← Back</button>
-    <button class="btn btn-primary" onclick="saveAndShowWaiting('dare1')">Save & Continue →</button>
+    <button class="btn btn-secondary" onclick="goHome()">< Back</button>
+    <button class="btn btn-primary" onclick="saveAndShowWaiting('dare1')">Save & Continue ></button>
   </div>
 </div>
 
@@ -335,8 +335,8 @@ h2 { font-size: 1.2rem; font-weight: 700; color: var(--accent); margin-bottom: 4
   </div>
 
   <div class="btn-row">
-    <button class="btn btn-secondary" onclick="goHome()">← Back</button>
-    <button class="btn btn-primary" onclick="saveAndShowWaiting('log')">Save & Continue →</button>
+    <button class="btn btn-secondary" onclick="goHome()">< Back</button>
+    <button class="btn btn-primary" onclick="saveAndShowWaiting('log')">Save & Continue ></button>
   </div>
 </div>
 
@@ -356,7 +356,7 @@ h2 { font-size: 1.2rem; font-weight: 700; color: var(--accent); margin-bottom: 4
     <div id="dare2-entries">
       <div class="dare-entry" data-index="0">
         <div class="entry-header"><span class="entry-num">Entry 1</span></div>
-        <div class="field"><label class="label">The pitch I'll try (SCQA structure)</label><textarea data-key="dare2_0_pitch" placeholder="Situation → Complication → Question → Answer..."></textarea></div>
+        <div class="field"><label class="label">The pitch I'll try (SCQA structure)</label><textarea data-key="dare2_0_pitch" placeholder="Situation > Complication > Question > Answer..."></textarea></div>
         <div class="field"><label class="label">What happened when I delivered it</label><textarea class="short" data-key="dare2_0_happened" placeholder="How did it go..."></textarea></div>
         <div class="form-row">
           <div class="field"><label class="label">Strengths I noticed</label><textarea class="short" data-key="dare2_0_strengths" placeholder="What went well..."></textarea></div>
@@ -368,8 +368,8 @@ h2 { font-size: 1.2rem; font-weight: 700; color: var(--accent); margin-bottom: 4
   </div>
 
   <div class="btn-row">
-    <button class="btn btn-secondary" onclick="goHome()">← Back</button>
-    <button class="btn btn-primary" onclick="saveAndShowWaiting('dare2')">Save & Continue →</button>
+    <button class="btn btn-secondary" onclick="goHome()">< Back</button>
+    <button class="btn btn-primary" onclick="saveAndShowWaiting('dare2')">Save & Continue ></button>
   </div>
 </div>
 
@@ -398,7 +398,7 @@ h2 { font-size: 1.2rem; font-weight: 700; color: var(--accent); margin-bottom: 4
   </div>
 
   <div class="btn-row">
-    <button class="btn btn-secondary" onclick="goHome()">← Back</button>
+    <button class="btn btn-secondary" onclick="goHome()">< Back</button>
     <button class="btn btn-success" onclick="saveAndComplete()">Save & Complete</button>
   </div>
 
@@ -417,12 +417,12 @@ h2 { font-size: 1.2rem; font-weight: 700; color: var(--accent); margin-bottom: 4
     <p>Your responses are saved. Enter the next code when your facilitator shares it.</p>
     <div class="launch-input-wrap" style="margin-top: 20px;">
       <input type="text" id="waiting-code-input" placeholder="NEXT CODE" autocomplete="off" maxlength="10">
-      <button class="btn btn-primary btn-sm" id="waiting-code-go" style="width: auto; padding: 13px 20px;">→</button>
+      <button class="btn btn-primary btn-sm" id="waiting-code-go" style="width: auto; padding: 13px 20px;">></button>
     </div>
     <div class="launch-error" id="waiting-code-error"></div>
   </div>
   <div style="text-align: center; margin-top: 20px;">
-    <button class="btn btn-outline btn-sm" onclick="goBackToScreen()">← Edit my responses</button>
+    <button class="btn btn-outline btn-sm" onclick="goBackToScreen()">< Edit my responses</button>
   </div>
 </div>
 
@@ -553,7 +553,7 @@ function addDareEntry(prefix, max) {
     html = '<div class="dare-entry" data-index="' + idx + '">'
       + '<div class="entry-header"><span class="entry-num">Entry ' + (idx + 1) + '</span>'
       + '<button class="remove-entry" onclick="removeDareEntry(this,\'' + prefix + '\')">Remove</button></div>'
-      + '<div class="field"><label class="label">The pitch I\'ll try (SCQA structure)</label><textarea data-key="' + prefix + '_' + idx + '_pitch" placeholder="Situation → Complication → Question → Answer..."></textarea></div>'
+      + '<div class="field"><label class="label">The pitch I\'ll try (SCQA structure)</label><textarea data-key="' + prefix + '_' + idx + '_pitch" placeholder="Situation > Complication > Question > Answer..."></textarea></div>'
       + '<div class="field"><label class="label">What happened when I delivered it</label><textarea class="short" data-key="' + prefix + '_' + idx + '_happened" placeholder="How did it go..."></textarea></div>'
       + '<div class="form-row">'
       + '<div class="field"><label class="label">Strengths I noticed</label><textarea class="short" data-key="' + prefix + '_' + idx + '_strengths" placeholder="What went well..."></textarea></div>'
