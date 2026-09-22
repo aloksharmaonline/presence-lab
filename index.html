@@ -185,7 +185,7 @@ h2 { font-size: 1.2rem; font-weight: 700; color: var(--accent); margin-bottom: 4
     <div class="import-section">
       <p>Restore a previous backup</p>
       <label class="import-btn">
-        ⬆ Import from file
+        Import from file
         <input type="file" id="import-file" accept=".txt">
       </label>
     </div>
@@ -194,7 +194,7 @@ h2 { font-size: 1.2rem; font-weight: 700; color: var(--accent); margin-bottom: 4
 
 <!-- SCREEN: LEARNING MAP (code: MAP) -->
 <div class="screen" id="screen-map">
-  <div class="top-bar"><button class="backup-btn" onclick="autoBackup()">⬇ Save backup</button></div>
+  <div class="top-bar"><button class="backup-btn" onclick="autoBackup()">Save backup</button></div>
   <div class="progress-bar">
     <div class="progress-dot current"></div><div class="progress-dot"></div><div class="progress-dot"></div><div class="progress-dot"></div><div class="progress-dot"></div><div class="progress-dot"></div>
   </div>
@@ -244,7 +244,7 @@ h2 { font-size: 1.2rem; font-weight: 700; color: var(--accent); margin-bottom: 4
 
 <!-- SCREEN: EQ REFLECT (code: MIND) -->
 <div class="screen" id="screen-mind">
-  <div class="top-bar"><button class="backup-btn" onclick="autoBackup()">⬇ Save backup</button></div>
+  <div class="top-bar"><button class="backup-btn" onclick="autoBackup()">Save backup</button></div>
   <div class="progress-bar">
     <div class="progress-dot done"></div><div class="progress-dot current"></div><div class="progress-dot"></div><div class="progress-dot"></div><div class="progress-dot"></div><div class="progress-dot"></div>
   </div>
@@ -271,7 +271,7 @@ h2 { font-size: 1.2rem; font-weight: 700; color: var(--accent); margin-bottom: 4
 
 <!-- SCREEN: DARE 1 (code: DARE1) -->
 <div class="screen" id="screen-dare1">
-  <div class="top-bar"><button class="backup-btn" onclick="autoBackup()">⬇ Save backup</button></div>
+  <div class="top-bar"><button class="backup-btn" onclick="autoBackup()">Save backup</button></div>
   <div class="progress-bar">
     <div class="progress-dot done"></div><div class="progress-dot done"></div><div class="progress-dot current"></div><div class="progress-dot"></div><div class="progress-dot"></div><div class="progress-dot"></div>
   </div>
@@ -304,7 +304,7 @@ h2 { font-size: 1.2rem; font-weight: 700; color: var(--accent); margin-bottom: 4
 
 <!-- SCREEN: SCQA REFLECT (code: LOG) -->
 <div class="screen" id="screen-log">
-  <div class="top-bar"><button class="backup-btn" onclick="autoBackup()">⬇ Save backup</button></div>
+  <div class="top-bar"><button class="backup-btn" onclick="autoBackup()">Save backup</button></div>
   <div class="progress-bar">
     <div class="progress-dot done"></div><div class="progress-dot done"></div><div class="progress-dot done"></div><div class="progress-dot current"></div><div class="progress-dot"></div><div class="progress-dot"></div>
   </div>
@@ -342,7 +342,7 @@ h2 { font-size: 1.2rem; font-weight: 700; color: var(--accent); margin-bottom: 4
 
 <!-- SCREEN: DARE 2 (code: DARE2) -->
 <div class="screen" id="screen-dare2">
-  <div class="top-bar"><button class="backup-btn" onclick="autoBackup()">⬇ Save backup</button></div>
+  <div class="top-bar"><button class="backup-btn" onclick="autoBackup()">Save backup</button></div>
   <div class="progress-bar">
     <div class="progress-dot done"></div><div class="progress-dot done"></div><div class="progress-dot done"></div><div class="progress-dot done"></div><div class="progress-dot current"></div><div class="progress-dot"></div>
   </div>
@@ -375,7 +375,7 @@ h2 { font-size: 1.2rem; font-weight: 700; color: var(--accent); margin-bottom: 4
 
 <!-- SCREEN: TAKEAWAYS (code: STORY) -->
 <div class="screen" id="screen-story">
-  <div class="top-bar"><button class="backup-btn" onclick="autoBackup()">⬇ Save backup</button></div>
+  <div class="top-bar"><button class="backup-btn" onclick="autoBackup()">Save backup</button></div>
   <div class="progress-bar">
     <div class="progress-dot done"></div><div class="progress-dot done"></div><div class="progress-dot done"></div><div class="progress-dot done"></div><div class="progress-dot done"></div><div class="progress-dot current"></div>
   </div>
@@ -399,21 +399,21 @@ h2 { font-size: 1.2rem; font-weight: 700; color: var(--accent); margin-bottom: 4
 
   <div class="btn-row">
     <button class="btn btn-secondary" onclick="goHome()">← Back</button>
-    <button class="btn btn-success" onclick="saveAndComplete()">Save & Complete ✓</button>
+    <button class="btn btn-success" onclick="saveAndComplete()">Save & Complete</button>
   </div>
 
   <div class="download-section" id="download-section" style="display: none;">
     <h3>Download Your Responses</h3>
     <p style="font-size: 0.85rem; color: var(--muted); margin-bottom: 12px;">Export your workbook as a text file to keep a record of your reflections.</p>
-    <button class="btn btn-outline" onclick="downloadResponses()">⬇ Download as Text</button>
+    <button class="btn btn-outline" onclick="downloadResponses()">Download as Text</button>
   </div>
 </div>
 
 <!-- SCREEN: WAITING -->
 <div class="screen" id="screen-waiting">
   <div class="waiting">
-    <div class="icon">⏸</div>
-    <h2>Saved ✓</h2>
+    <div class="icon" style="font-size:2rem;">...</div>
+    <h2> Saved</h2>
     <p>Your responses are saved. Enter the next code when your facilitator shares it.</p>
     <div class="launch-input-wrap" style="margin-top: 20px;">
       <input type="text" id="waiting-code-input" placeholder="NEXT CODE" autocomplete="off" maxlength="10">
@@ -429,14 +429,14 @@ h2 { font-size: 1.2rem; font-weight: 700; color: var(--accent); margin-bottom: 4
 <!-- SCREEN: COMPLETE -->
 <div class="screen" id="screen-complete">
   <div class="complete">
-    <div class="icon">🎉</div>
+    <div class="icon" style="font-size:2.5rem;">Done</div>
     <h1>Workbook Complete</h1>
     <p class="subtitle" style="margin-top: 8px;">The Presence Lab — My Workbook</p>
     <p style="color: var(--muted); font-size: 0.92rem; margin-top: 16px; max-width: 340px; margin-left: auto; margin-right: auto;">
       Your responses are saved. You can revisit this workbook anytime using your code.
     </p>
     <div style="margin-top: 28px;">
-      <button class="btn btn-primary" onclick="downloadResponses()" style="max-width: 280px; margin: 0 auto;">⬇ Download My Responses</button>
+      <button class="btn btn-primary" onclick="downloadResponses()" style="max-width: 280px; margin: 0 auto;">Download My Responses</button>
     </div>
     <div style="margin-top: 12px;">
       <button class="btn btn-outline btn-sm" onclick="goHome()" style="max-width: 280px; margin: 0 auto;">Enter Another Code</button>
@@ -445,7 +445,7 @@ h2 { font-size: 1.2rem; font-weight: 700; color: var(--accent); margin-bottom: 4
 </div>
 
 <!-- TOAST -->
-<div class="saved-toast" id="toast">Saved ✓</div>
+<div class="saved-toast" id="toast"> Saved</div>
 
 <script>
 var CODES = {
@@ -492,7 +492,7 @@ function goBackToScreen() {
 
 function showToast(msg) {
   var t = $("toast");
-  t.textContent = msg || "Saved ✓";
+  t.textContent = msg || " Saved";
   t.classList.add("show");
   setTimeout(function () { t.classList.remove("show"); }, 1800);
 }
@@ -634,7 +634,7 @@ function saveAndShowWaiting(screen) {
   showScreen("waiting");
   localStorage.setItem("presence_lab_screen", "waiting");
   localStorage.setItem("presence_lab_return", screen);
-  showToast("Saved ✓");
+  showToast(" Saved");
 }
 
 function saveAndComplete() {
@@ -644,7 +644,7 @@ function saveAndComplete() {
   saveAll(data);
   $("download-section").style.display = "";
   showScreen("complete");
-  showToast("Workbook complete ✓");
+  showToast("Workbook complete");
 }
 
 /* DOWNLOAD (readable text) */
@@ -734,7 +734,7 @@ function downloadResponses() {
   a.click();
   document.body.removeChild(a);
   URL.revokeObjectURL(url);
-  showToast("Downloaded ✓");
+  showToast("Downloaded");
 }
 
 /* AUTO-BACKUP (TXT) — downloads on every save or manual click */
@@ -814,7 +814,7 @@ function autoBackup() {
   a.click();
   document.body.removeChild(a);
   URL.revokeObjectURL(url);
-  showToast("Backup downloaded ✓");
+  showToast("Backup downloaded");
 }
 
 /* IMPORT from TXT backup */
@@ -879,7 +879,7 @@ function importBackup(file) {
 
       saveAll(data);
       loadAllScreens();
-      showToast("Backup restored ✓");
+      showToast("Backup restored");
     } catch (err) {
       showToast("Could not read backup file");
     }
