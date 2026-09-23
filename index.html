@@ -182,6 +182,8 @@ h2 { font-size: 1.2rem; font-weight: 700; color: var(--accent); margin-bottom: 4
   .print-cover .print-sub { font-size: 14pt; color: #666; margin-bottom: 30px; }
   .print-cover .print-line { width: 60px; height: 3px; background: #5c6b7a; margin: 0 auto 30px; }
   .print-cover .print-meta { font-size: 10pt; color: #999; }
+  .print-cover .print-logo { margin-bottom: 30px; }
+  .print-cover .print-logo img { height: 60px; width: auto; opacity: 0.85; }
 
   /* Section headers */
   .screen { padding: 40px 50px; }
@@ -500,6 +502,9 @@ h2 { font-size: 1.2rem; font-weight: 700; color: var(--accent); margin-bottom: 4
 
 <!-- PRINT COVER (only visible on print) -->
 <div class="print-cover" style="display:none;">
+  <div class="print-logo">
+    <img src="logo_b64.txt" alt="Bespoke Learning" onerror="this.style.display='none'">
+  </div>
   <h1>The Presence Lab</h1>
   <div class="print-line"></div>
   <p class="print-sub">My Workbook</p>
