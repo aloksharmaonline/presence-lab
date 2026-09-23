@@ -140,9 +140,10 @@ h2 { font-size: 1.2rem; font-weight: 700; color: var(--accent); margin-bottom: 4
 .map-connector { text-align: center; padding: 10px 0; color: var(--accent); font-size: 1.4rem; }
 
 .top-bar {
-  display: flex; justify-content: flex-end; align-items: center;
+  display: flex; justify-content: space-between; align-items: center;
   margin-bottom: 8px; min-height: 32px;
 }
+.top-bar-logo { height: 22px; width: auto; display: block; }
 .top-bar .backup-btn {
   background: none; border: 1.5px solid var(--border); color: var(--muted);
   padding: 6px 12px; border-radius: 8px; font-size: 0.78rem; font-weight: 600;
@@ -165,6 +166,8 @@ h2 { font-size: 1.2rem; font-weight: 700; color: var(--accent); margin-bottom: 4
   .form-row { flex-direction: column; gap: 0; }
 }
 
+@page { margin: 18mm 14mm; }
+
 @media print {
   body { background: #fff; font-size: 11pt; line-height: 1.5; }
   .screen { display: block !important; padding: 0; max-width: none; margin: 0; page-break-after: always; }
@@ -183,14 +186,17 @@ h2 { font-size: 1.2rem; font-weight: 700; color: var(--accent); margin-bottom: 4
   .print-cover .print-line { width: 60px; height: 3px; background: #5c6b7a; margin: 0 auto 30px; }
   .print-cover .print-meta { font-size: 10pt; color: #999; }
   .print-cover .print-logo-bottom { margin-top: auto; padding-bottom: 40px; }
-  .print-cover .print-logo-bottom img { height: 48px; width: auto; opacity: 0.85; }
+  .print-cover .print-logo-bottom img { height: 72px; width: auto; }
 
-  .print-running-header { display: block !important; position: fixed; top: 0; right: 0;
-    padding: 8px 0 0 0; z-index: 100; }
-  .print-running-header img { height: 24px; width: auto; opacity: 0.6; }
+  .print-running-header { display: flex !important; position: fixed; top: 0; left: 0; right: 0;
+    justify-content: space-between; align-items: center;
+    padding: 0 0 6px 0; border-bottom: 1px solid #e0e0e0; z-index: 100; }
+  .print-running-header .print-header-text { font-size: 8pt; color: #aaa;
+    letter-spacing: 0.04em; text-transform: uppercase; }
+  .print-running-header img { height: 22px; width: auto; }
 
   /* Section headers */
-  .screen { padding: 40px 50px; }
+  .screen { padding: 44px 50px 40px; }
   .screen h1 { font-size: 18pt; color: #333; margin-bottom: 4px; border-bottom: 2px solid #5c6b7a; padding-bottom: 8px; }
   .screen .subtitle { font-size: 10pt; color: #888; margin-bottom: 24px; }
   .screen .module-label { display: inline-block; font-size: 8pt; color: #5c6b7a; background: #f0ece4;
@@ -217,10 +223,6 @@ h2 { font-size: 1.2rem; font-weight: 700; color: var(--accent); margin-bottom: 4
   .dare-entry .entry-header { margin-bottom: 8px; }
   .dare-entry .entry-num { font-size: 8pt; color: #5c6b7a; }
 
-  /* Page header/footer via content */
-  .screen { padding-top: 50px; }
-  .screen::before { content: "The Presence Lab - My Workbook"; display: block; font-size: 7.5pt;
-    color: #bbb; text-align: right; margin-bottom: 20px; letter-spacing: 0.03em; padding-right: 40px; }
 }
 </style>
 </head>
@@ -239,6 +241,7 @@ h2 { font-size: 1.2rem; font-weight: 700; color: var(--accent); margin-bottom: 4
 
 <!-- PRINT RUNNING HEADER (every page) -->
 <div class="print-running-header" style="display:none;">
+  <span class="print-header-text">The Presence Lab</span>
   <img src="logo.png" alt="Bespoke Learning" onerror="this.style.display='none'">
 </div>
 
@@ -268,7 +271,7 @@ h2 { font-size: 1.2rem; font-weight: 700; color: var(--accent); margin-bottom: 4
 
 <!-- SCREEN: LEARNING MAP (code: MAP) -->
 <div class="screen" id="screen-map">
-  <div class="top-bar"><button class="backup-btn" onclick="autoBackup()">Save backup</button></div>
+  <div class="top-bar"><img src="logo.png" alt="Bespoke Learning" class="top-bar-logo" onerror="this.style.display='none'"><button class="backup-btn" onclick="autoBackup()">Save backup</button></div>
   <div class="progress-bar">
     <div class="progress-dot current"></div><div class="progress-dot"></div><div class="progress-dot"></div><div class="progress-dot"></div><div class="progress-dot"></div><div class="progress-dot"></div>
   </div>
@@ -318,7 +321,7 @@ h2 { font-size: 1.2rem; font-weight: 700; color: var(--accent); margin-bottom: 4
 
 <!-- SCREEN: EQ REFLECT (code: MIND) -->
 <div class="screen" id="screen-mind">
-  <div class="top-bar"><button class="backup-btn" onclick="autoBackup()">Save backup</button></div>
+  <div class="top-bar"><img src="logo.png" alt="Bespoke Learning" class="top-bar-logo" onerror="this.style.display='none'"><button class="backup-btn" onclick="autoBackup()">Save backup</button></div>
   <div class="progress-bar">
     <div class="progress-dot done"></div><div class="progress-dot current"></div><div class="progress-dot"></div><div class="progress-dot"></div><div class="progress-dot"></div><div class="progress-dot"></div>
   </div>
@@ -345,7 +348,7 @@ h2 { font-size: 1.2rem; font-weight: 700; color: var(--accent); margin-bottom: 4
 
 <!-- SCREEN: DARE 1 (code: DARE1) -->
 <div class="screen" id="screen-dare1">
-  <div class="top-bar"><button class="backup-btn" onclick="autoBackup()">Save backup</button></div>
+  <div class="top-bar"><img src="logo.png" alt="Bespoke Learning" class="top-bar-logo" onerror="this.style.display='none'"><button class="backup-btn" onclick="autoBackup()">Save backup</button></div>
   <div class="progress-bar">
     <div class="progress-dot done"></div><div class="progress-dot done"></div><div class="progress-dot current"></div><div class="progress-dot"></div><div class="progress-dot"></div><div class="progress-dot"></div>
   </div>
@@ -378,7 +381,7 @@ h2 { font-size: 1.2rem; font-weight: 700; color: var(--accent); margin-bottom: 4
 
 <!-- SCREEN: SCQA REFLECT (code: LOG) -->
 <div class="screen" id="screen-log">
-  <div class="top-bar"><button class="backup-btn" onclick="autoBackup()">Save backup</button></div>
+  <div class="top-bar"><img src="logo.png" alt="Bespoke Learning" class="top-bar-logo" onerror="this.style.display='none'"><button class="backup-btn" onclick="autoBackup()">Save backup</button></div>
   <div class="progress-bar">
     <div class="progress-dot done"></div><div class="progress-dot done"></div><div class="progress-dot done"></div><div class="progress-dot current"></div><div class="progress-dot"></div><div class="progress-dot"></div>
   </div>
@@ -416,7 +419,7 @@ h2 { font-size: 1.2rem; font-weight: 700; color: var(--accent); margin-bottom: 4
 
 <!-- SCREEN: DARE 2 (code: DARE2) -->
 <div class="screen" id="screen-dare2">
-  <div class="top-bar"><button class="backup-btn" onclick="autoBackup()">Save backup</button></div>
+  <div class="top-bar"><img src="logo.png" alt="Bespoke Learning" class="top-bar-logo" onerror="this.style.display='none'"><button class="backup-btn" onclick="autoBackup()">Save backup</button></div>
   <div class="progress-bar">
     <div class="progress-dot done"></div><div class="progress-dot done"></div><div class="progress-dot done"></div><div class="progress-dot done"></div><div class="progress-dot current"></div><div class="progress-dot"></div>
   </div>
@@ -449,7 +452,7 @@ h2 { font-size: 1.2rem; font-weight: 700; color: var(--accent); margin-bottom: 4
 
 <!-- SCREEN: TAKEAWAYS (code: STORY) -->
 <div class="screen" id="screen-story">
-  <div class="top-bar"><button class="backup-btn" onclick="autoBackup()">Save backup</button></div>
+  <div class="top-bar"><img src="logo.png" alt="Bespoke Learning" class="top-bar-logo" onerror="this.style.display='none'"><button class="backup-btn" onclick="autoBackup()">Save backup</button></div>
   <div class="progress-bar">
     <div class="progress-dot done"></div><div class="progress-dot done"></div><div class="progress-dot done"></div><div class="progress-dot done"></div><div class="progress-dot done"></div><div class="progress-dot current"></div>
   </div>
