@@ -164,6 +164,29 @@ h2 { font-size: 1.2rem; font-weight: 700; color: var(--accent); margin-bottom: 4
   h1 { font-size: 1.35rem; }
   .form-row { flex-direction: column; gap: 0; }
 }
+
+@media print {
+  body { background: #fff; }
+  .screen { display: block !important; page-break-inside: avoid; padding: 0; max-width: none; margin: 0; }
+  .screen:not(.print-show) { display: none !important; }
+  .top-bar, .progress-bar, .module-label, .btn-row, .btn, .add-entry-btn,
+  .remove-entry, .launch-wrapper, .waiting, .complete, .download-section,
+  .import-section, .saved-toast, #screen-launch, #screen-waiting, #screen-complete { display: none !important; }
+  .card { border: 1px solid #ccc; box-shadow: none; break-inside: avoid; }
+  .card-accent { border-left: 3px solid #555; }
+  h1 { color: #222; font-size: 1.4rem; }
+  .subtitle { color: #555; }
+  .label { color: #333; }
+  .field textarea, .field input { border: 1px solid #ccc; background: #fff; min-height: auto; height: auto; overflow: visible; }
+  textarea { white-space: pre-wrap; word-wrap: break-word; }
+  .map-connector { color: #555; }
+  .form-row { flex-direction: column; gap: 0; }
+  .dare-entry { break-inside: avoid; }
+  .print-header { display: block !important; text-align: center; margin-bottom: 20px; padding-bottom: 15px; border-bottom: 2px solid #333; }
+  .print-header h1 { margin-bottom: 4px; }
+  .print-header p { color: #555; font-size: 0.9rem; }
+  .print-footer { display: block !important; text-align: center; margin-top: 30px; padding-top: 15px; border-top: 1px solid #ccc; font-size: 0.8rem; color: #888; }
+}
 </style>
 </head>
 <body>
@@ -438,10 +461,24 @@ h2 { font-size: 1.2rem; font-weight: 700; color: var(--accent); margin-bottom: 4
     <div style="margin-top: 28px;">
       <button class="btn btn-primary" onclick="downloadResponses()" style="max-width: 280px; margin: 0 auto;">Download My Responses</button>
     </div>
+    <div style="margin-top: 10px;">
+      <button class="btn btn-outline btn-sm" onclick="printWorkbook()" style="max-width: 280px; margin: 0 auto;">Print / Save as PDF</button>
+    </div>
     <div style="margin-top: 12px;">
       <button class="btn btn-outline btn-sm" onclick="goHome()" style="max-width: 280px; margin: 0 auto;">Enter Another Code</button>
     </div>
   </div>
+</div>
+
+<!-- PRINT HEADER (only visible on print) -->
+<div class="print-header" style="display:none;">
+  <h1>The Presence Lab - My Workbook</h1>
+  <p>Executive Presence Workshop</p>
+</div>
+
+<!-- PRINT FOOTER (only visible on print) -->
+<div class="print-footer" style="display:none;">
+  The Presence Lab Workbook
 </div>
 
 <!-- TOAST -->
@@ -645,6 +682,23 @@ function saveAndComplete() {
   $("download-section").style.display = "";
   showScreen("complete");
   showToast("Workbook complete");
+}
+
+/* PRINT / SAVE AS PDF */
+function printWorkbook() {
+  var screens = ["map", "mind", "dare1", "log", "dare2", "story"];
+  screens.forEach(function (s) {
+    $("screen-" + s).classList.add("print-show");
+  });
+  $("screen-complete").classList.remove("print-show");
+  document.querySelector(".print-header").style.display = "block";
+  document.querySelector(".print-footer").style.display = "block";
+  window.print();
+  screens.forEach(function (s) {
+    $("screen-" + s).classList.remove("print-show");
+  });
+  document.querySelector(".print-header").style.display = "none";
+  document.querySelector(".print-footer").style.display = "none";
 }
 
 /* DOWNLOAD (readable text) */
