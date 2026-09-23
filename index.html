@@ -182,8 +182,12 @@ h2 { font-size: 1.2rem; font-weight: 700; color: var(--accent); margin-bottom: 4
   .print-cover .print-sub { font-size: 14pt; color: #666; margin-bottom: 30px; }
   .print-cover .print-line { width: 60px; height: 3px; background: #5c6b7a; margin: 0 auto 30px; }
   .print-cover .print-meta { font-size: 10pt; color: #999; }
-  .print-cover .print-logo { margin-bottom: 30px; }
-  .print-cover .print-logo img { height: 60px; width: auto; opacity: 0.85; }
+  .print-cover .print-logo-bottom { margin-top: auto; padding-bottom: 40px; }
+  .print-cover .print-logo-bottom img { height: 48px; width: auto; opacity: 0.85; }
+
+  .print-running-header { display: block !important; position: fixed; top: 0; right: 0;
+    padding: 8px 0 0 0; z-index: 100; }
+  .print-running-header img { height: 24px; width: auto; opacity: 0.6; }
 
   /* Section headers */
   .screen { padding: 40px 50px; }
@@ -214,8 +218,9 @@ h2 { font-size: 1.2rem; font-weight: 700; color: var(--accent); margin-bottom: 4
   .dare-entry .entry-num { font-size: 8pt; color: #5c6b7a; }
 
   /* Page header/footer via content */
+  .screen { padding-top: 50px; }
   .screen::before { content: "The Presence Lab - My Workbook"; display: block; font-size: 7.5pt;
-    color: #bbb; text-align: right; margin-bottom: 20px; letter-spacing: 0.03em; }
+    color: #bbb; text-align: right; margin-bottom: 20px; letter-spacing: 0.03em; padding-right: 40px; }
 }
 </style>
 </head>
@@ -223,13 +228,18 @@ h2 { font-size: 1.2rem; font-weight: 700; color: var(--accent); margin-bottom: 4
 
 <!-- PRINT COVER (only visible on print - first page) -->
 <div class="print-cover" style="display:none;">
-  <div class="print-logo">
-    <img src="logo.png" alt="Bespoke Learning" onerror="this.style.display='none'">
-  </div>
   <h1>The Presence Lab</h1>
   <div class="print-line"></div>
   <p class="print-sub">My Workbook</p>
   <p class="print-meta">Executive Presence Workshop</p>
+  <div class="print-logo-bottom">
+    <img src="logo.png" alt="Bespoke Learning" onerror="this.style.display='none'">
+  </div>
+</div>
+
+<!-- PRINT RUNNING HEADER (every page) -->
+<div class="print-running-header" style="display:none;">
+  <img src="logo.png" alt="Bespoke Learning" onerror="this.style.display='none'">
 </div>
 
 <!-- SCREEN: LAUNCH PAD -->
@@ -722,11 +732,13 @@ function printWorkbook() {
   });
   $("screen-complete").classList.remove("print-show");
   document.querySelector(".print-cover").style.display = "flex";
+  document.querySelector(".print-running-header").style.display = "block";
   window.print();
   screens.forEach(function (s) {
     $("screen-" + s).classList.remove("print-show");
   });
   document.querySelector(".print-cover").style.display = "none";
+  document.querySelector(".print-running-header").style.display = "none";
 }
 
 /* DOWNLOAD (readable text) */
