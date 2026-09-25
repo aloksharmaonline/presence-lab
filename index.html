@@ -200,11 +200,11 @@ h2 { font-size: 1.2rem; font-weight: 700; color: var(--accent); margin-bottom: 4
   .screen { padding: 44px 50px 40px; }
   .screen h1 { font-size: 18pt; color: #333; margin-bottom: 4px; border-bottom: 2px solid #5c6b7a; padding-bottom: 8px; }
   .screen .subtitle { font-size: 10pt; color: #888; margin-bottom: 24px; }
-  .screen .module-label { display: inline-block; font-size: 8pt; color: #5c6b7a; background: #f0ece4;
+  .screen .module-label { display: inline-block; font-size: 8pt; color: #5c6b7a; background: transparent;
     padding: 3px 10px; border-radius: 3px; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 10px; }
 
   /* Cards as report sections */
-  .card { border: none; border-bottom: 1px solid #e0e0e0; box-shadow: none; padding: 16px 0; margin-bottom: 0; border-radius: 0; }
+  .card { background: transparent; border: none; border-bottom: 1px solid #e0e0e0; box-shadow: none; padding: 16px 0; margin-bottom: 0; border-radius: 0; }
   .card-accent { border-left: none; border-left: 3px solid #5c6b7a; padding-left: 14px; }
   .card h3 { font-size: 11pt; color: #444; margin-bottom: 8px; }
   .card p { font-size: 9.5pt; color: #777; }
@@ -219,7 +219,7 @@ h2 { font-size: 1.2rem; font-weight: 700; color: var(--accent); margin-bottom: 4
   .field textarea { white-space: pre-wrap; word-wrap: break-word; min-height: 0; }
 
   /* Dare entries */
-  .dare-entry { background: #fafafa; border: 1px solid #e8e8e8; border-radius: 4px; padding: 12px 14px;
+  .dare-entry { background: transparent; border: 1px solid #e8e8e8; border-radius: 4px; padding: 12px 14px;
     margin-bottom: 10px; page-break-inside: avoid; }
   .dare-entry .entry-header { margin-bottom: 8px; }
   .dare-entry .entry-num { font-size: 8pt; color: #5c6b7a; }
@@ -448,12 +448,12 @@ h2 { font-size: 1.2rem; font-weight: 700; color: var(--accent); margin-bottom: 4
   <p class="subtitle">Create & Deliver a Pitch</p>
 
   <div class="card card-accent">
-    <p>Use the SCQA framework to structure a real pitch. Deliver it and note what happened. Add entries as they happen between sessions.</p>
+    <p>Use the SCQA/PREP framework to structure a real pitch. Deliver it and note what happened. Add entries as they happen between sessions.</p>
 
     <div id="dare2-entries">
       <div class="dare-entry" data-index="0">
         <div class="entry-header"><span class="entry-num">Entry 1</span></div>
-        <div class="field"><label class="label">The pitch I'll try (SCQA structure)</label><textarea data-key="dare2_0_pitch" placeholder="Situation > Complication > Question > Answer..."></textarea></div>
+        <div class="field"><label class="label">The pitch I'll try (SCQA/PREP structure)</label><textarea data-key="dare2_0_pitch" placeholder="SCQA: Situation > Complication > Question > Answer... / PREP: Point > Reason > Example > Point..."></textarea></div>
         <div class="field"><label class="label">What happened when I delivered it</label><textarea class="short" data-key="dare2_0_happened" placeholder="How did it go..."></textarea></div>
         <div class="form-row">
           <div class="field"><label class="label">Strengths I noticed</label><textarea class="short" data-key="dare2_0_strengths" placeholder="What went well..."></textarea></div>
@@ -617,7 +617,7 @@ function addDareEntry(prefix, max) {
     html = '<div class="dare-entry" data-index="' + idx + '">'
       + '<div class="entry-header"><span class="entry-num">Entry ' + (idx + 1) + '</span>'
       + '<button class="remove-entry" onclick="removeDareEntry(this,\'' + prefix + '\')">Remove</button></div>'
-      + '<div class="field"><label class="label">The pitch I\'ll try (SCQA structure)</label><textarea data-key="' + prefix + '_' + idx + '_pitch" placeholder="Situation > Complication > Question > Answer..."></textarea></div>'
+      + '<div class="field"><label class="label">The pitch I\'ll try (SCQA/PREP structure)</label><textarea data-key="' + prefix + '_' + idx + '_pitch" placeholder="SCQA: Situation > Complication > Question > Answer... / PREP: Point > Reason > Example > Point..."></textarea></div>'
       + '<div class="field"><label class="label">What happened when I delivered it</label><textarea class="short" data-key="' + prefix + '_' + idx + '_happened" placeholder="How did it go..."></textarea></div>'
       + '<div class="form-row">'
       + '<div class="field"><label class="label">Strengths I noticed</label><textarea class="short" data-key="' + prefix + '_' + idx + '_strengths" placeholder="What went well..."></textarea></div>'
