@@ -338,6 +338,10 @@ h2 { font-size: 1.2rem; font-weight: 700; color: var(--accent); margin-bottom: 4
       <label class="label">In hindsight, what should you have done?</label>
       <textarea data-key="mind_hindsight" placeholder="What would you do differently next time..."></textarea>
     </div>
+    <div class="field">
+      <label class="label">Which communication style do you default to under pressure?</label>
+      <textarea data-key="mind_style" placeholder="Passive, passive-aggressive, aggressive, or assertive? What does it look like for you..."></textarea>
+    </div>
   </div>
 
   <div class="btn-row">
@@ -379,18 +383,40 @@ h2 { font-size: 1.2rem; font-weight: 700; color: var(--accent); margin-bottom: 4
   </div>
 </div>
 
-<!-- SCREEN: SCQA REFLECT (code: LOG) -->
+<!-- SCREEN: PREP & SCQA REFLECT (code: STRUCTURE) -->
 <div class="screen" id="screen-log">
   <div class="top-bar"><img src="logo.png" alt="Bespoke Learning" class="top-bar-logo" onerror="this.style.display='none'"><button class="backup-btn" onclick="autoBackup()">Save backup</button></div>
   <div class="progress-bar">
     <div class="progress-dot done"></div><div class="progress-dot done"></div><div class="progress-dot done"></div><div class="progress-dot current"></div><div class="progress-dot"></div><div class="progress-dot"></div>
   </div>
   <span class="module-label">Module 2 - Structuring the Narrative</span>
-  <h1>SCQA Framework</h1>
+  <h1>PREP &amp; SCQA</h1>
   <p class="subtitle">Structure your next conversation</p>
 
   <div class="card card-accent">
-    <h3>How would you structure this using SCQA?</h3>
+    <h3>PREP Model</h3>
+    <p>Build a quick, persuasive argument.</p>
+
+    <div class="field">
+      <label class="label">P - Point</label>
+      <textarea class="short" data-key="prep_point" placeholder="What is your core message or recommendation?"></textarea>
+    </div>
+    <div class="field">
+      <label class="label">R - Reason</label>
+      <textarea class="short" data-key="prep_reason" placeholder="Why should they believe it?"></textarea>
+    </div>
+    <div class="field">
+      <label class="label">E - Example</label>
+      <textarea class="short" data-key="prep_example" placeholder="What evidence or story supports it?"></textarea>
+    </div>
+    <div class="field">
+      <label class="label">P - Point (restated)</label>
+      <textarea class="short" data-key="prep_end" placeholder="Reinforce your message..."></textarea>
+    </div>
+  </div>
+
+  <div class="card card-accent">
+    <h3>SCQA Framework</h3>
     <p>Pick a specific upcoming conversation and break it down.</p>
 
     <div class="field">
@@ -529,12 +555,13 @@ h2 { font-size: 1.2rem; font-weight: 700; color: var(--accent); margin-bottom: 4
 
 <script>
 var CODES = {
-  "MAP":   { screen: "map",   title: "My Learning Map" },
-  "MIND":  { screen: "mind",  title: "EQ - Reflect" },
-  "DARE1": { screen: "dare1", title: "Dare 1 - Log" },
-  "SCQA":  { screen: "log",   title: "SCQA - Reflect" },
-  "DARE2": { screen: "dare2", title: "Dare 2 - Log" },
-  "HABIT": { screen: "story", title: "My Takeaways" }
+  "MAP":       { screen: "map",   title: "My Learning Map" },
+  "MIND":      { screen: "mind",  title: "EQ - Reflect" },
+  "DARE1":     { screen: "dare1", title: "Dare 1 - Log" },
+  "STRUCTURE": { screen: "log",   title: "PREP & SCQA - Reflect" },
+  "SCQA":      { screen: "log",   title: "PREP & SCQA - Reflect" },
+  "DARE2":     { screen: "dare2", title: "Dare 2 - Log" },
+  "HABIT":     { screen: "story", title: "My Takeaways" }
 };
 
 var CODES_BY_SCREEN = {};
@@ -770,6 +797,7 @@ function downloadResponses() {
   L.push("-".repeat(40));
   L.push("Emotional hijack: " + (data.mind_hijack || "(not filled)"));
   L.push("In hindsight: " + (data.mind_hindsight || "(not filled)"));
+  L.push("Default style under pressure: " + (data.mind_style || "(not filled)"));
   L.push("");
 
   L.push("DARE 1 - EMOTIONAL HIJACK & LISTENING LOG");
@@ -791,6 +819,10 @@ function downloadResponses() {
 
   L.push("STRUCTURING THE NARRATIVE - REFLECT");
   L.push("-".repeat(40));
+  L.push("PREP - Point: " + (data.prep_point || "(not filled)"));
+  L.push("PREP - Reason: " + (data.prep_reason || "(not filled)"));
+  L.push("PREP - Example: " + (data.prep_example || "(not filled)"));
+  L.push("PREP - Point (restated): " + (data.prep_end || "(not filled)"));
   L.push("S - Situation: " + (data.log_situation || "(not filled)"));
   L.push("C - Complication: " + (data.log_complication || "(not filled)"));
   L.push("Q - Question: " + (data.log_question || "(not filled)"));
@@ -852,6 +884,11 @@ function autoBackup() {
     ["map_future_outcome", "Which should create"],
     ["mind_hijack", "Emotional hijack"],
     ["mind_hindsight", "In hindsight"],
+    ["mind_style", "Default style under pressure"],
+    ["prep_point", "PREP - Point"],
+    ["prep_reason", "PREP - Reason"],
+    ["prep_example", "PREP - Example"],
+    ["prep_end", "PREP - Point (restated)"],
     ["log_situation", "SCQA - Situation"],
     ["log_complication", "SCQA - Complication"],
     ["log_question", "SCQA - Question"],
@@ -932,6 +969,11 @@ function importBackup(file) {
         "Which should create": "map_future_outcome",
         "Emotional hijack": "mind_hijack",
         "In hindsight": "mind_hindsight",
+        "Default style under pressure": "mind_style",
+        "PREP - Point (restated)": "prep_end",
+        "PREP - Point": "prep_point",
+        "PREP - Reason": "prep_reason",
+        "PREP - Example": "prep_example",
         "SCQA - Situation": "log_situation",
         "SCQA - Complication": "log_complication",
         "SCQA - Question": "log_question",
