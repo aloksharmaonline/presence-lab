@@ -121,17 +121,6 @@ h2 { font-size: 1.2rem; font-weight: 700; color: var(--accent); margin-bottom: 4
 .launch-input-wrap input:focus { outline: none; border-color: var(--accent); }
 .launch-error { color: var(--danger); font-size: 0.82rem; margin-top: 8px; min-height: 20px; }
 
-.import-section { margin-top: 32px; padding-top: 20px; border-top: 1px solid var(--border); width: 100%; max-width: 300px; }
-.import-section p { font-size: 0.82rem; color: var(--muted); margin-bottom: 10px; }
-.import-btn {
-  display: inline-flex; align-items: center; justify-content: center; gap: 6px;
-  padding: 10px 18px; background: transparent; color: var(--accent); border: 1.5px solid var(--border);
-  border-radius: 10px; font-size: 0.85rem; font-weight: 600; cursor: pointer; transition: all 0.2s;
-  font-family: inherit;
-}
-.import-btn:hover { background: var(--accent-light); border-color: var(--accent); }
-.import-btn input[type="file"] { display: none; }
-
 .progress-bar { display: flex; gap: 4px; margin-bottom: 20px; }
 .progress-dot { flex: 1; height: 4px; border-radius: 2px; background: var(--border); transition: background 0.3s; }
 .progress-dot.done { background: var(--accent); }
@@ -151,8 +140,19 @@ h2 { font-size: 1.2rem; font-weight: 700; color: var(--accent); margin-bottom: 4
 }
 .top-bar .backup-btn:hover { color: var(--accent); border-color: var(--accent); background: var(--accent-light); }
 
-.download-section { margin-top: 24px; padding-top: 20px; border-top: 1px solid var(--border); }
-.download-section h3 { font-size: 0.95rem; font-weight: 600; margin-bottom: 10px; }
+.dl-drop { position: relative; }
+.dl-menu {
+  display: none; position: absolute; right: 0; top: calc(100% + 6px);
+  background: var(--card); border: 1px solid var(--border); border-radius: 10px;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.1); min-width: 110px; overflow: hidden; z-index: 60;
+}
+.dl-drop.open .dl-menu { display: block; }
+.dl-menu button {
+  display: block; width: 100%; padding: 11px 16px; background: none; border: none;
+  text-align: left; font-size: 0.85rem; font-weight: 600; color: var(--text);
+  cursor: pointer; font-family: inherit;
+}
+.dl-menu button:hover { background: var(--accent-light); color: var(--accent); }
 
 .module-label {
   display: inline-block; font-size: 0.72rem; font-weight: 700; color: var(--accent);
@@ -174,8 +174,8 @@ h2 { font-size: 1.2rem; font-weight: 700; color: var(--accent); margin-bottom: 4
   .screen:last-of-type { page-break-after: auto; }
   .screen:not(.print-show) { display: none !important; }
   .top-bar, .progress-bar, .btn-row, .btn, .add-entry-btn,
-  .remove-entry, .launch-wrapper, .waiting, .complete, .download-section,
-  .import-section, .saved-toast, #screen-launch, #screen-waiting, #screen-complete,
+  .remove-entry, .launch-wrapper, .waiting, .complete,
+  .saved-toast, #screen-launch, #screen-waiting, #screen-complete,
   .map-connector, .form-row { display: none !important; }
 
   /* Cover page */
@@ -260,21 +260,14 @@ h2 { font-size: 1.2rem; font-weight: 700; color: var(--accent); margin-bottom: 4
       <button class="btn btn-primary btn-sm" id="code-go" style="width: auto; padding: 13px 20px;">></button>
     </div>
     <div class="launch-error" id="code-error"></div>
-    <div class="import-section">
-      <p>Restore a previous backup</p>
-      <label class="import-btn">
-        Import from file
-        <input type="file" id="import-file" accept=".txt">
-      </label>
-    </div>
   </div>
 </div>
 
 <!-- SCREEN: LEARNING MAP (code: MAP) -->
 <div class="screen" id="screen-map">
-  <div class="top-bar"><img src="logo.png" alt="Bespoke Learning" class="top-bar-logo" onerror="this.style.display='none'"><button class="backup-btn" onclick="autoBackup()">Save backup</button></div>
+  <div class="top-bar"><img src="logo.png" alt="Bespoke Learning" class="top-bar-logo" onerror="this.style.display='none'"><div class="dl-drop"><button class="backup-btn" onclick="this.parentElement.classList.toggle('open')">Download</button><div class="dl-menu"><button onclick="closeDl();downloadResponses()">.txt</button><button onclick="closeDl();printWorkbook()">.pdf</button></div></div></div>
   <div class="progress-bar">
-    <div class="progress-dot current"></div><div class="progress-dot"></div><div class="progress-dot"></div><div class="progress-dot"></div><div class="progress-dot"></div><div class="progress-dot"></div>
+    <div class="progress-dot current"></div><div class="progress-dot"></div><div class="progress-dot"></div><div class="progress-dot"></div><div class="progress-dot"></div>
   </div>
   <span class="module-label">Module 0</span>
   <h1>My Learning Map</h1>
@@ -322,9 +315,9 @@ h2 { font-size: 1.2rem; font-weight: 700; color: var(--accent); margin-bottom: 4
 
 <!-- SCREEN: EQ REFLECT (code: MIND) -->
 <div class="screen" id="screen-mind">
-  <div class="top-bar"><img src="logo.png" alt="Bespoke Learning" class="top-bar-logo" onerror="this.style.display='none'"><button class="backup-btn" onclick="autoBackup()">Save backup</button></div>
+  <div class="top-bar"><img src="logo.png" alt="Bespoke Learning" class="top-bar-logo" onerror="this.style.display='none'"><div class="dl-drop"><button class="backup-btn" onclick="this.parentElement.classList.toggle('open')">Download</button><div class="dl-menu"><button onclick="closeDl();downloadResponses()">.txt</button><button onclick="closeDl();printWorkbook()">.pdf</button></div></div></div>
   <div class="progress-bar">
-    <div class="progress-dot done"></div><div class="progress-dot current"></div><div class="progress-dot"></div><div class="progress-dot"></div><div class="progress-dot"></div><div class="progress-dot"></div>
+    <div class="progress-dot done"></div><div class="progress-dot current"></div><div class="progress-dot"></div><div class="progress-dot"></div><div class="progress-dot"></div>
   </div>
   <span class="module-label">Module 1 - Emotional Intelligence</span>
   <h1>Emotions Log</h1>
@@ -353,9 +346,9 @@ h2 { font-size: 1.2rem; font-weight: 700; color: var(--accent); margin-bottom: 4
 
 <!-- SCREEN: DARE 1 (code: DARE1) -->
 <div class="screen" id="screen-dare1">
-  <div class="top-bar"><img src="logo.png" alt="Bespoke Learning" class="top-bar-logo" onerror="this.style.display='none'"><button class="backup-btn" onclick="autoBackup()">Save backup</button></div>
+  <div class="top-bar"><img src="logo.png" alt="Bespoke Learning" class="top-bar-logo" onerror="this.style.display='none'"><div class="dl-drop"><button class="backup-btn" onclick="this.parentElement.classList.toggle('open')">Download</button><div class="dl-menu"><button onclick="closeDl();downloadResponses()">.txt</button><button onclick="closeDl();printWorkbook()">.pdf</button></div></div></div>
   <div class="progress-bar">
-    <div class="progress-dot done"></div><div class="progress-dot done"></div><div class="progress-dot current"></div><div class="progress-dot"></div><div class="progress-dot"></div><div class="progress-dot"></div>
+    <div class="progress-dot done"></div><div class="progress-dot done"></div><div class="progress-dot current"></div><div class="progress-dot"></div><div class="progress-dot"></div>
   </div>
   <span class="module-label">Module 1 - Emotional Intelligence</span>
   <h1>Dare 1</h1>
@@ -386,9 +379,9 @@ h2 { font-size: 1.2rem; font-weight: 700; color: var(--accent); margin-bottom: 4
 
 <!-- SCREEN: PREP & SCQA REFLECT (code: STRUCTURE) -->
 <div class="screen" id="screen-log">
-  <div class="top-bar"><img src="logo.png" alt="Bespoke Learning" class="top-bar-logo" onerror="this.style.display='none'"><button class="backup-btn" onclick="autoBackup()">Save backup</button></div>
+  <div class="top-bar"><img src="logo.png" alt="Bespoke Learning" class="top-bar-logo" onerror="this.style.display='none'"><div class="dl-drop"><button class="backup-btn" onclick="this.parentElement.classList.toggle('open')">Download</button><div class="dl-menu"><button onclick="closeDl();downloadResponses()">.txt</button><button onclick="closeDl();printWorkbook()">.pdf</button></div></div></div>
   <div class="progress-bar">
-    <div class="progress-dot done"></div><div class="progress-dot done"></div><div class="progress-dot done"></div><div class="progress-dot current"></div><div class="progress-dot"></div><div class="progress-dot"></div>
+    <div class="progress-dot done"></div><div class="progress-dot done"></div><div class="progress-dot done"></div><div class="progress-dot current"></div><div class="progress-dot"></div>
   </div>
   <span class="module-label">Module 2 - Structuring the Narrative</span>
   <h1>PREP &amp; SCQA</h1>
@@ -446,9 +439,9 @@ h2 { font-size: 1.2rem; font-weight: 700; color: var(--accent); margin-bottom: 4
 
 <!-- SCREEN: DARE 2 (code: DARE2) -->
 <div class="screen" id="screen-dare2">
-  <div class="top-bar"><img src="logo.png" alt="Bespoke Learning" class="top-bar-logo" onerror="this.style.display='none'"><button class="backup-btn" onclick="autoBackup()">Save backup</button></div>
+  <div class="top-bar"><img src="logo.png" alt="Bespoke Learning" class="top-bar-logo" onerror="this.style.display='none'"><div class="dl-drop"><button class="backup-btn" onclick="this.parentElement.classList.toggle('open')">Download</button><div class="dl-menu"><button onclick="closeDl();downloadResponses()">.txt</button><button onclick="closeDl();printWorkbook()">.pdf</button></div></div></div>
   <div class="progress-bar">
-    <div class="progress-dot done"></div><div class="progress-dot done"></div><div class="progress-dot done"></div><div class="progress-dot done"></div><div class="progress-dot current"></div><div class="progress-dot"></div>
+    <div class="progress-dot done"></div><div class="progress-dot done"></div><div class="progress-dot done"></div><div class="progress-dot done"></div><div class="progress-dot current"></div>
   </div>
   <span class="module-label">Module 2 - Structuring the Narrative</span>
   <h1>Dare 2</h1>
@@ -473,43 +466,7 @@ h2 { font-size: 1.2rem; font-weight: 700; color: var(--accent); margin-bottom: 4
 
   <div class="btn-row">
     <button class="btn btn-secondary" onclick="goHome()">< Back</button>
-    <button class="btn btn-primary" onclick="saveAndShowWaiting('dare2')">Save & Continue ></button>
-  </div>
-</div>
-
-<!-- SCREEN: TAKEAWAYS (code: STORY) -->
-<div class="screen" id="screen-story">
-  <div class="top-bar"><img src="logo.png" alt="Bespoke Learning" class="top-bar-logo" onerror="this.style.display='none'"><button class="backup-btn" onclick="autoBackup()">Save backup</button></div>
-  <div class="progress-bar">
-    <div class="progress-dot done"></div><div class="progress-dot done"></div><div class="progress-dot done"></div><div class="progress-dot done"></div><div class="progress-dot done"></div><div class="progress-dot current"></div>
-  </div>
-  <span class="module-label">Closing</span>
-  <h1>My Takeaways</h1>
-  <p class="subtitle">What I'm carrying forward</p>
-
-  <div class="card card-accent">
-    <div class="field">
-      <label class="label">One thing I'm taking away from today</label>
-      <textarea data-key="story_takeaway" placeholder="In one sentence..."></textarea>
-    </div>
-  </div>
-
-  <div class="card card-accent">
-    <div class="field">
-      <label class="label">The leader I am becoming is...</label>
-      <textarea data-key="story_leader" placeholder="Describe the leader you're stepping into..."></textarea>
-    </div>
-  </div>
-
-  <div class="btn-row">
-    <button class="btn btn-secondary" onclick="goHome()">< Back</button>
     <button class="btn btn-success" onclick="saveAndComplete()">Save & Complete</button>
-  </div>
-
-  <div class="download-section" id="download-section" style="display: none;">
-    <h3>Download Your Responses</h3>
-    <p style="font-size: 0.85rem; color: var(--muted); margin-bottom: 12px;">Export your workbook as a text file to keep a record of your reflections.</p>
-    <button class="btn btn-outline" onclick="downloadResponses()">Download as Text</button>
   </div>
 </div>
 
@@ -561,8 +518,7 @@ var CODES = {
   "DARE1":     { screen: "dare1", title: "Dare 1 - Log" },
   "STRUCTURE": { screen: "log",   title: "PREP & SCQA - Reflect" },
   "SCQA":      { screen: "log",   title: "PREP & SCQA - Reflect" },
-  "DARE2":     { screen: "dare2", title: "Dare 2 - Log" },
-  "HABIT":     { screen: "story", title: "My Takeaways" }
+  "DARE2":     { screen: "dare2", title: "Dare 2 - Log" }
 };
 
 var CODES_BY_SCREEN = {};
@@ -575,8 +531,8 @@ function $(id) { return document.getElementById(id); }
 
 function showScreen(name) {
   document.querySelectorAll(".screen").forEach(function (s) { s.classList.remove("active"); });
-  var el = $("screen-" + name);
-  if (el) el.classList.add("active");
+  var el = $("screen-" + name) || $("screen-launch");
+  el.classList.add("active");
   window.scrollTo(0, 0);
 }
 
@@ -712,10 +668,6 @@ function enterCode(codeStr, errEl) {
   loadCurrentScreen();
   localStorage.setItem("presence_lab_screen", match.screen);
   localStorage.removeItem("presence_lab_return");
-  if (match.screen === "story") {
-    var data = loadAll();
-    if (data._complete) $("download-section").style.display = "";
-  }
 }
 
 $("code-go").addEventListener("click", function () {
@@ -747,17 +699,13 @@ function saveAndShowWaiting(screen) {
 
 function saveAndComplete() {
   saveCurrentScreen();
-  var data = loadAll();
-  data._complete = true;
-  saveAll(data);
-  $("download-section").style.display = "";
   showScreen("complete");
   showToast("Workbook complete");
 }
 
 /* PRINT / SAVE AS PDF */
 function printWorkbook() {
-  var screens = ["map", "mind", "dare1", "log", "dare2", "story"];
+  var screens = ["map", "mind", "dare1", "log", "dare2"];
   screens.forEach(function (s) {
     $("screen-" + s).classList.add("print-show");
   });
@@ -867,172 +815,6 @@ function downloadResponses() {
   showToast("Downloaded");
 }
 
-/* AUTO-BACKUP (TXT) - downloads on every save or manual click */
-function autoBackup() {
-  var data = loadAll();
-  var lines = [];
-  lines.push("THE PRESENCE LAB - MY WORKBOOK BACKUP");
-  lines.push("Saved: " + new Date().toLocaleString());
-  lines.push("=".repeat(50));
-  lines.push("");
-
-  var fields = [
-    ["map_present_situation", "When this happens (present)"],
-    ["map_present_action", "I tend to"],
-    ["map_present_outcome", "Which results in"],
-    ["map_future_situation", "When this happens (future)"],
-    ["map_future_action", "I wish to"],
-    ["map_future_outcome", "Which should create"],
-    ["mind_hijack", "Emotional hijack"],
-    ["mind_hindsight", "In hindsight"],
-    ["mind_style", "Default style under pressure"],
-    ["prep_point", "PREP - Point"],
-    ["prep_reason", "PREP - Reason"],
-    ["prep_example", "PREP - Example"],
-    ["prep_end", "PREP - Point (restated)"],
-    ["log_situation", "SCQA - Situation"],
-    ["log_complication", "SCQA - Complication"],
-    ["log_question", "SCQA - Question"],
-    ["log_answer", "SCQA - Answer"],
-    ["story_takeaway", "One thing I'm taking away"],
-    ["story_leader", "The leader I am becoming"]
-  ];
-
-  fields.forEach(function (f) {
-    lines.push(f[1] + ": " + (data[f[0]] || ""));
-  });
-
-  lines.push("");
-  lines.push("DARE 1 - ENTRIES");
-  lines.push("-".repeat(40));
-  for (var i = 0; i < 3; i++) {
-    var d1 = data["dare1_" + i + "_date"] || "";
-    var s1 = data["dare1_" + i + "_situation"] || "";
-    var did = data["dare1_" + i + "_did"] || "";
-    var should = data["dare1_" + i + "_should"] || "";
-    if (d1 || s1 || did || should) {
-      lines.push("Entry " + (i + 1) + ":");
-      if (d1) lines.push("  Date: " + d1);
-      if (s1) lines.push("  Situation: " + s1);
-      if (did) lines.push("  What I did: " + did);
-      if (should) lines.push("  What I should have done: " + should);
-      lines.push("");
-    }
-  }
-
-  lines.push("DARE 2 - ENTRIES");
-  lines.push("-".repeat(40));
-  for (var j = 0; j < 2; j++) {
-    var pitch = data["dare2_" + j + "_pitch"] || "";
-    var happened = data["dare2_" + j + "_happened"] || "";
-    var strengths = data["dare2_" + j + "_strengths"] || "";
-    var challenges = data["dare2_" + j + "_challenges"] || "";
-    if (pitch || happened || strengths || challenges) {
-      lines.push("Entry " + (j + 1) + ":");
-      if (pitch) lines.push("  Pitch: " + pitch);
-      if (happened) lines.push("  What happened: " + happened);
-      if (strengths) lines.push("  Strengths: " + strengths);
-      if (challenges) lines.push("  Challenges: " + challenges);
-      lines.push("");
-    }
-  }
-
-  lines.push("=".repeat(50));
-  lines.push("Import this file to restore your responses.");
-
-  var blob = new Blob([lines.join("\n")], { type: "text/plain" });
-  var url = URL.createObjectURL(blob);
-  var a = document.createElement("a");
-  a.href = url;
-  a.download = "Presence-Lab-Backup.txt";
-  document.body.appendChild(a);
-  a.click();
-  document.body.removeChild(a);
-  URL.revokeObjectURL(url);
-  showToast("Backup downloaded");
-}
-
-/* IMPORT from TXT backup */
-function importBackup(file) {
-  var reader = new FileReader();
-  reader.onload = function (e) {
-    try {
-      var text = e.target.result;
-      var data = loadAll();
-      var lines = text.split("\n");
-
-      var fieldMap = {
-        "When this happens (present)": "map_present_situation",
-        "I tend to": "map_present_action",
-        "Which results in": "map_present_outcome",
-        "When this happens (future)": "map_future_situation",
-        "I wish to": "map_future_action",
-        "Which should create": "map_future_outcome",
-        "Emotional hijack": "mind_hijack",
-        "In hindsight": "mind_hindsight",
-        "Default style under pressure": "mind_style",
-        "PREP - Point (restated)": "prep_end",
-        "PREP - Point": "prep_point",
-        "PREP - Reason": "prep_reason",
-        "PREP - Example": "prep_example",
-        "SCQA - Situation": "log_situation",
-        "SCQA - Complication": "log_complication",
-        "SCQA - Question": "log_question",
-        "SCQA - Answer": "log_answer",
-        "One thing I'm taking away": "story_takeaway",
-        "The leader I am becoming": "story_leader"
-      };
-
-      var section = "";
-      var entryIdx = 0;
-
-      lines.forEach(function (line) {
-        var trimmed = line.trim();
-
-        if (trimmed === "DARE 1 - ENTRIES") { section = "dare1"; return; }
-        if (trimmed === "DARE 2 - ENTRIES") { section = "dare2"; return; }
-
-        if (section === "dare1" || section === "dare2") {
-          var entryMatch = trimmed.match(/^Entry (\d+):$/);
-          if (entryMatch) {
-            entryIdx = parseInt(entryMatch[1], 10) - 1;
-            return;
-          }
-          var prefix = section + "_" + entryIdx + "_";
-          if (trimmed.indexOf("Date: ") === 0) data[prefix + "date"] = trimmed.substring(6);
-          else if (trimmed.indexOf("Situation: ") === 0) data[prefix + "situation"] = trimmed.substring(11);
-          else if (trimmed.indexOf("What I did: ") === 0) data[prefix + "did"] = trimmed.substring(12);
-          else if (trimmed.indexOf("What I should have done: ") === 0) data[prefix + "should"] = trimmed.substring(25);
-          else if (trimmed.indexOf("Pitch: ") === 0) data[prefix + "pitch"] = trimmed.substring(7);
-          else if (trimmed.indexOf("What happened: ") === 0) data[prefix + "happened"] = trimmed.substring(15);
-          else if (trimmed.indexOf("Strengths: ") === 0) data[prefix + "strengths"] = trimmed.substring(11);
-          else if (trimmed.indexOf("Challenges: ") === 0) data[prefix + "challenges"] = trimmed.substring(12);
-          return;
-        }
-
-        Object.keys(fieldMap).forEach(function (label) {
-          if (trimmed.indexOf(label + ": ") === 0) {
-            data[fieldMap[label]] = trimmed.substring(label.length + 2);
-          }
-        });
-      });
-
-      saveAll(data);
-      loadAllScreens();
-      showToast("Backup restored");
-    } catch (err) {
-      showToast("Could not read backup file");
-    }
-  };
-  reader.readAsText(file);
-}
-
-$("import-file").addEventListener("change", function (e) {
-  var file = e.target.files[0];
-  if (file) importBackup(file);
-  e.target.value = "";
-});
-
 /* AUTO-SAVE on every input/textarea change */
 document.addEventListener("input", function (e) {
   var el = e.target;
@@ -1056,12 +838,14 @@ if (savedScreen && savedScreen !== "launch") {
   } else if (CODES_BY_SCREEN[savedScreen]) {
     currentScreen = savedScreen;
     showScreen(savedScreen);
-    if (savedScreen === "story") {
-      var initData = loadAll();
-      if (initData._complete) $("download-section").style.display = "";
-    }
   }
 }
+function closeDl() {
+  document.querySelectorAll(".dl-drop.open").forEach(function (d) { d.classList.remove("open"); });
+}
+document.addEventListener("click", function (e) {
+  if (!e.target.closest || !e.target.closest(".dl-drop")) closeDl();
+});
 </script>
 </body>
 </html>
