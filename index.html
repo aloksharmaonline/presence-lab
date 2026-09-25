@@ -180,12 +180,13 @@ h2 { font-size: 1.2rem; font-weight: 700; color: var(--accent); margin-bottom: 4
 
   /* Cover page */
   .print-cover { display: flex !important; flex-direction: column; align-items: center; justify-content: center;
-    height: 100vh; text-align: center; page-break-after: always; border: none; padding: 0; margin: 0; }
+    height: 100vh; text-align: center; page-break-after: always; border: none; margin: 0;
+    position: relative; padding: 44px 0 0; }
   .print-cover h1 { font-size: 28pt; color: #333; margin-bottom: 8px; letter-spacing: -0.5px; }
   .print-cover .print-sub { font-size: 14pt; color: #666; margin-bottom: 30px; }
   .print-cover .print-line { width: 60px; height: 3px; background: #5c6b7a; margin: 0 auto 30px; }
   .print-cover .print-meta { font-size: 10pt; color: #999; }
-  .print-cover .print-logo-bottom { margin-top: auto; padding-bottom: 40px; }
+  .print-cover .print-logo-bottom { position: absolute; bottom: 40px; left: 0; right: 0; text-align: center; }
   .print-cover .print-logo-bottom img { height: 72px; width: auto; }
 
   .print-running-header { display: flex !important; position: fixed; top: 0; left: 0; right: 0;
